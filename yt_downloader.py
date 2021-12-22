@@ -6,6 +6,7 @@ from moviepy import editor as mp
 from pytube import Playlist, YouTube
 import yt_args 
 import requests
+import sys
 
 Playlist_vids = []
 ReadyToDownload = []
@@ -27,15 +28,16 @@ def main():
     try:
         print("Checking url...")
         response = requests.get(args.url)
-        print("url exists")
+        print("url exists\n")
 
     except Exception as e:
         print("url does not exists", e)
+        sys.exit()
 
     #connect to database
     conn = sqlite3.connect('music.db')
 
-    #funbction that get links from Youtube playlist 
+    #function that get links from Youtube playlist 
     def GetTheLinks(url):
         pl = Playlist(url)
         pl._video_regex = re.compile(r"\"url\":\"(/watch\?v=[\w-]*)")
