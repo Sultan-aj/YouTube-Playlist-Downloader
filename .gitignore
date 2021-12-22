@@ -1,0 +1,4 @@
+# Ignore files  
+*db
+music/
+yt_workspace.code-workspace
